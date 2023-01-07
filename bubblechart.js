@@ -1,6 +1,6 @@
 var margin = {top: 10, right: 30, bottom: 20, left: 50},
-width = 460 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
+width = 700 - margin.left - margin.right,
+height = 350 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg3 = d3.select("#bubble_chart")
@@ -20,8 +20,8 @@ d3.csv("data/Reddit_posts.csv", function(data) {
 
   // Size scale for countries
   var size = d3.scaleLinear()
-  .domain([4, 450])
-  .range([ 1, 90]);  // circle will be between 40px and 700 px wide
+  .domain([8, 5000])
+  .range([ 1, 1000]);  // circle will be between 40px and 700 px wide
 
   // create a tooltip
   var Tooltip = d3.select("#bubble_chart")

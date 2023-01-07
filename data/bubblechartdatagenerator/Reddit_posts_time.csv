@@ -1,0 +1,48 @@
+,index,date_year,Category,Count
+0,0,2014,assault,1
+1,1,2014,catfish,2
+2,2,2014,robbed,2
+3,3,2014,scam,4
+4,4,2015,assault,2
+5,5,2015,catfish,16
+6,6,2015,robbed,6
+7,7,2015,scam,31
+8,8,2015,sexual assault,1
+9,9,2016,assault,1
+10,10,2016,catfish,14
+11,11,2016,phishing,1
+12,12,2016,scam,32
+13,13,2016,sexual assault,1
+14,14,2017,assault,1
+15,15,2017,catfish,12
+16,16,2017,phishing,1
+17,17,2017,robbed,4
+18,18,2017,scam,25
+19,19,2018,assault,2
+20,20,2018,catfish,16
+21,21,2018,robbed,3
+22,22,2018,scam,20
+23,23,2018,sexual assault,1
+24,24,2019,assault,1
+25,25,2019,catfish,21
+26,26,2019,robbed,2
+27,27,2019,scam,50
+28,28,2019,sexual assault,4
+29,29,2020,assault,3
+30,30,2020,catfish,31
+31,31,2020,phishing,1
+32,32,2020,robbed,1
+33,33,2020,scam,70
+34,34,2020,sexual assault,2
+35,35,2021,assault,2
+36,36,2021,catfish,39
+37,37,2021,phishing,3
+38,38,2021,robbed,2
+39,39,2021,scam,80
+40,40,2021,sexual assault,4
+41,41,2022,assault,7
+42,42,2022,catfish,51
+43,43,2022,phishing,1
+44,44,2022,robbed,7
+45,45,2022,scam,99
+46,46,2022,sexual assault,4
