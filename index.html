@@ -7,6 +7,15 @@
 
 <!-- Color Scale -->
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<style type='text/css'>
+  #sidecontent h4
+    {
+      font-size:1em;
+      font-weight:bold;
+      margin:0;
+      padding:10px 0 2px 15px;
+    }
+</style>
 
 <body>
   <head>
@@ -15,17 +24,16 @@
 
 
 <!-- Create a div where the graph will take place -->
-<
 <div id="my_dataviz" align="center"></div>
 <div id="scatter_plot"></div>
 
 <!-- <div id="bar_chart_interactive"></div> -->
-
-<h2>Stacked bar chart</h2>
-<h4>It shows the quarterly and annual total number of reviews of tinder app. It proves the fact that the popularity of tinder app is slowly on it's decline since 2020. The orange represents the quarter 1 of the specific year, red representing the quarter 2, and so on. When all 4 quarters are stacked together, that represents the total number of review in that year.</h4>
-<h2>Connected scatter graph</h2>
-<h4>It shows the average rating of 3 major dating apps, Tinder, Bumble and Hinge. It represents the customer satisfation over the years and the app's trend. The green scatter plot is Tinder, Orange is bumble and blue is hinge. </h4>
-
+<div id="sidecontent">
+  <h2>Stacked bar chart</h2>
+    <h4>It shows the quarterly and annual total number of reviews of tinder app. It proves the fact that the popularity of tinder app is slowly on it's decline since 2020. The orange represents the quarter 1 of the specific year, red representing the quarter 2, and so on. When all 4 quarters are stacked together, that represents the total number of review in that year.</h4>
+  <h2>Connected scatter graph</h2>
+    <h4>It shows the average rating of 3 major dating apps, Tinder, Bumble and Hinge. It represents the customer satisfation over the years and the app's trend. The green scatter plot is Tinder, Orange is bumble and blue is hinge. </h4>
+</div>
 
 </body>
 
@@ -233,9 +241,11 @@
  <script src="bubblechart.js"></script>
  <br>
 <br>
+<div id="sidecontent">
 <h2>Circular Packed Bubble Chart with Collision and Dragging Animation (and tooltip)</h2>
 <h4>The animation makes this visualization very user-interactive. Scams have the highest mentions in the dating app confessions/ testimonials on Reddit, followed by catfishing.</h4>
- <div id="bar_chart" align="center"> <button onclick="update('assault')">Assault</button>
+</div>
+<div id="bar_chart" align="center"> <button onclick="update('assault')">Assault</button>
   <button onclick="update('scam')">Scam</button>
   <button onclick="update('sexual assault')">sexual assault</button>
   <button onclick="update('robbed')">robbed</button>
@@ -245,7 +255,9 @@
 <script src="multi_bar_chart.js"></script>  
 <br>
 <br>
+<div id="sidecontent">
 <h2>User interactive bar chart</h2>
 <h4>It shows the annual total number of Reddit posts which have the crime mentioned in them. A general trend of increasing nature is observed for moost of the crimes and their mentions.
   (PS. Use the buttons to toggle between different crime categories. )
 </h4>
+</div>
