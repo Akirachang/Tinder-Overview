@@ -38,6 +38,7 @@
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz" align="center"></div>
+
 <div id="scatter_plot"></div>
 
 <!-- <div id="bar_chart_interactive"></div> -->
@@ -54,7 +55,7 @@
 <script>
   // set the dimensions and margins of the graph
   var margin = {top: 10, right: 30, bottom: 20, left: 50},
-      width = 460 - margin.left - margin.right,
+      width = 600 - margin.left - margin.right,
       height = 400 - margin.top - margin.bottom;
   
   // append the svg object to the body of the page
@@ -145,16 +146,17 @@
         .on("mouseleave", mouseleave)
   
   })
-  svg.append("circle").attr("cx",300).attr("cy",30).attr("r", 6).style("fill", "#69b3a2")
-  svg.append("text").attr("x", 310).attr("y", 50).text("Quarter 1(Jan - March)").style("font-size", "15px").attr("alignment-baseline","middle")
 
-  svg.append("circle").attr("cx",300).attr("cy",50).attr("r", 6).style("fill", "#404080")
+  svg.append("circle").attr("cx",300).attr("cy",10).attr("r", 6).style("fill", "#66c2a5")
+  svg.append("text").attr("x", 310).attr("y", 10).text("Quarter 1(Jan - March)").style("font-size", "15px").attr("alignment-baseline","middle")
+  
+  svg.append("circle").attr("cx",300).attr("cy",30).attr("r", 6).style("fill", "#fc8d62")
   svg.append("text").attr("x", 310).attr("y", 30).text("Quarter 2(April - June)").style("font-size", "15px").attr("alignment-baseline","middle")
 
-  svg.append("circle").attr("cx",300).attr("cy",10).attr("r", 6).style("fill", "#69b3a2")
-  svg.append("text").attr("x", 310).attr("y", 10).text("Quarter 3(July - Sep)").style("font-size", "15px").attr("alignment-baseline","middle")
+  svg.append("circle").attr("cx",300).attr("cy",50).attr("r", 6).style("fill", "#8da0cb")
+  svg.append("text").attr("x", 310).attr("y", 50).text("Quarter 3(July - Sept)").style("font-size", "15px").attr("alignment-baseline","middle")
 
-  svg.append("circle").attr("cx",300).attr("cy",70).attr("r", 6).style("fill", "#404080")
+  svg.append("circle").attr("cx",300).attr("cy",70).attr("r", 6).style("fill", "#e78ac3")
   svg.append("text").attr("x", 310).attr("y", 70).text("Quarter 4(Oct - Dec)").style("font-size", "15px").attr("alignment-baseline","middle")
 
   
@@ -247,7 +249,7 @@
           .attr("stroke", "white")
   
       // Add a label at the end of each line
-      svg2
+      /*svg2
         .selectAll("myLabels")
         .data(dataReady)
         .enter()
@@ -260,7 +262,7 @@
             .text(function(d) { return d.name; })
             .style("fill", function(d){ return myColor(d.name) })
             .style("font-size", 15)
-  
+  */
       // Add a legend (interactive)
       svg2
         .selectAll("myLegend")

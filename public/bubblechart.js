@@ -1,6 +1,6 @@
-var margin = {top: 10, right: 30, bottom: 20, left: 50},
-width = 700 - margin.left - margin.right,
-height = 350 - margin.top - margin.bottom;
+var margin = {top: 10, right: 1, bottom: 100, left: 1},
+width = 1400 - margin.left - margin.right,
+height = 700 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg3 = d3.select("#bubble_chart")
@@ -21,7 +21,7 @@ d3.csv("Reddit_posts.csv", function(data) {
   // Size scale for countries
   var size = d3.scaleLinear()
   .domain([8, 5000])
-  .range([ 1, 1000]);  // circle will be between 40px and 700 px wide
+  .range([ 5, 600]);  // circle will be between 1px and 1000 px wide
 
   // create a tooltip
   var Tooltip = d3.select("#bubble_chart")
@@ -57,9 +57,9 @@ d3.csv("Reddit_posts.csv", function(data) {
     .enter()
     .append("circle")
       .attr("class", "node")
-      .attr("r", function(d){ return size(d.Count)})
-      .attr("cx", width / 2)
-      .attr("cy", height / 2)
+      .attr("r", function(d){ return 2.5*size(d.Count)})
+      .attr("cx", width / 8)
+      .attr("cy", height / 8)
       .style("fill", function(d){ return color(d.Category)})
       .style("fill-opacity", 0.8)
       .attr("stroke", "black")
@@ -74,9 +74,9 @@ d3.csv("Reddit_posts.csv", function(data) {
 
   // Features of the forces applied to the nodes:
   var simulation = d3.forceSimulation()
-      .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+      .force("center", d3.forceCenter().x(2*width).y(height)) // Attraction to the center of the svg area
       .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-      .force("collide", d3.forceCollide().strength(.1).radius(function(d){ return (size(d.Count)+3) }).iterations(1)) // Force that avoids circle overlapping
+      .force("collide", d3.forceCollide().strength(.1).radius(function(d){ return 2.4*(size(d.Count)+3) }).iterations(1)) // Force that avoids circle overlapping
 
   // Apply these forces to the nodes and update their positions.
   // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
