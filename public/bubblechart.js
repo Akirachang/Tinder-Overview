@@ -9,7 +9,7 @@ var svg3 = d3.select("#bubble_chart")
     .attr("height", height)
 
 // Read data
-d3.csv("data/Reddit_posts.csv", function(data) {
+d3.csv("Reddit_posts.csv", function(data) {
 
   // Filter a bit the data -> more than 1 million inhabitants
 
