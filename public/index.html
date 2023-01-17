@@ -29,126 +29,97 @@
         padding-left: 80px;
         text-align: center;
         font-family: 'Playfair Display', serif;
-        font-size: 7ch;
+        font-size: 9ch;
         }
     </style>
     
   </head>
 
-  <div id="sidecontent">
-    <h2>Stacked bar chart</h2>
-      <h4>It shows the quarterly and annual total number of reviews of tinder app. It proves the fact that the popularity of tinder app is slowly on it's decline since 2020. The orange represents the quarter 1 of the specific year, red representing the quarter 2, and so on. When all 4 quarters are stacked together, that represents the total number of review in that year.</h4>
-    <br>
-      <h2>Connected scatter graph</h2>
-      <h4>It shows the average rating of 3 major dating apps, Tinder, Bumble and Hinge. It represents the customer satisfation over the years and the app's trend. The green scatter plot is Tinder, Orange is bumble and blue is hinge. </h4>
-  </div>
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz" align="center"></div>
 <div id="scatter_plot"></div>
 
 <!-- <div id="bar_chart_interactive"></div> -->
+<div id="sidecontent">
+  <h2>Stacked bar chart</h2>
+    <h4>It shows the quarterly and annual total number of reviews of tinder app. It proves the fact that the popularity of tinder app is slowly on it's decline since 2020. The orange represents the quarter 1 of the specific year, red representing the quarter 2, and so on. When all 4 quarters are stacked together, that represents the total number of review in that year.</h4>
+  <br>
+    <h2>Connected scatter graph</h2>
+    <h4>It shows the average rating of 3 major dating apps, Tinder, Bumble and Hinge. It represents the customer satisfation over the years and the app's trend. The green scatter plot is Tinder, Orange is bumble and blue is hinge. </h4>
+</div>
 
-
-
+</body>
 
 <script>
-
-  // set the dimensions and margins of the graph
-  var margin = {top: 10, right: 30, bottom: 20, left: 50},
-      width = 460 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
-  
-  // append the svg object to the body of the page
-  var svg = d3.select("#my_dataviz")
-    .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-  
-  // Parse the Data
-  d3.csv("data.csv", function(data) {
-  
-    // List of subgroups = header of the csv files = soil condition here
-    var subgroups = data.columns.slice(1)
-  
-    // List of groups = species here = value of the first column called group -> I show them on the X axis
-    var groups = d3.map(data, function(d){return(d.group)}).keys()
-  
-    // Add X axis
-    var x = d3.scaleBand()
-        .domain(groups)
-        .range([0, width])
-        .padding([0.2])
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).tickSizeOuter(0));
-  
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, 100000])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-  
-    // color palette = one color per subgroup
-    var color = d3.scaleOrdinal()
-      .domain(subgroups)
-      .range(d3.schemeSet2);
-  
-    //stack the data? --> stack per subgroup
-    var stackedData = d3.stack()
-      .keys(subgroups)
-      (data)
-
-    // ----------------
-    // Highlight a specific subgroup when hovered
-    // ----------------
-  
-    // What happens when user hover a bar
-    var mouseover = function(d) {
-      // what subgroup are we hovering?
-      var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
-      var subgroupValue = d.data[subgroupName];
-      // Reduce opacity of all rect to 0.2
-      d3.selectAll(".myRect").style("opacity", 0.2)
-      // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
-      d3.selectAll("."+subgroupName)
-        .style("opacity", 1)
-      }
-  
-    // When user do not hover anymore
-    var mouseleave = function(d) {
-      // Back to normal opacity: 0.8
-      d3.selectAll(".myRect")
-        .style("opacity",0.8)
-      }
-  
-    // Show the bars
-    svg.append("g")
-      .selectAll("g")
-      // Enter in the stack data = loop key per key = group per group
-      .data(stackedData)
-      .enter().append("g")
-        .attr("fill", function(d) { return color(d.key); })
-        .attr("class", function(d){ return "myRect " + d.key }) // Add a class to each subgroup: their name
-        .selectAll("rect")
-        // enter a second time = loop subgroup per subgroup to add all rectangles
-        .data(function(d) { return d; })
-        .enter().append("rect")
-          .attr("x", function(d) { return x(d.data.group); })
-          .attr("y", function(d) { return y(d[1]); })
-          .attr("height", function(d) { return y(d[0]) - y(d[1]); })
-          .attr("width",x.bandwidth())
-          .attr("stroke", "grey")
-        .on("mouseover", mouseover)
-        .on("mouseleave", mouseleave)
-  
-  })
-  
-  </script>
-  <script>
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 30, bottom: 20, left: 50},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+    
+    // Parse the Data
+    d3.csv("data/data.csv", function(data) {
+    
+      // List of subgroups = header of the csv files = soil condition here
+      var subgroups = data.columns.slice(1)
+    
+      // List of groups = species here = value of the first column called group -> I show them on the X axis
+      var groups = d3.map(data, function(d){return(d.group)}).keys()
+    
+      // Add X axis
+      var x = d3.scaleBand()
+          .domain(groups)
+          .range([0, width])
+          .padding([0.2])
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x).tickSizeOuter(0));
+    
+      // Add Y axis
+      var y = d3.scaleLinear()
+        .domain([0, 100000])
+        .range([ height, 0 ]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+    
+      // color palette = one color per subgroup
+      var color = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(['#fa9c6e','#c1657e','#86507b','#393a60'])
+    
+      //stack the data? --> stack per subgroup
+      var stackedData = d3.stack()
+        .keys(subgroups)
+        (data)
+    
+      // Show the bars
+      svg.append("g")
+        .selectAll("g")
+        // Enter in the stack data = loop key per key = group per group
+        .data(stackedData)
+        .enter().append("g")
+          .attr("fill", function(d) { return color(d.key); })
+          .selectAll("rect")
+          // enter a second time = loop subgroup per subgroup to add all rectangles
+          .data(function(d) { return d; })
+          .enter().append("rect")
+            .attr("x", function(d) { return x(d.data.group); })
+            .attr("y", function(d) { return y(d[1]); })
+            .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+            .attr("width",x.bandwidth())
+    })
+    
+    </script>
+<script>
 
   // set the dimensions and margins of the graph
   var margin = {top: 10, right: 100, bottom: 30, left: 30},
@@ -165,7 +136,7 @@
             "translate(" + margin.left + "," + margin.top + ")");
   
   //Read the data
-  d3.csv("rating.csv", function(data) {
+  d3.csv("data/rating.csv", function(data) {
   
       // List of groups (here I have one group per column)
       var allGroup = ["Tinder", "Bumble", "Hinge"]
@@ -273,10 +244,6 @@
   
   
   </script>
-  <div id="sidecontent">
-    <h2>Circular Packed Bubble Chart with Collision and Dragging Animation (and tooltip)</h2>
-    <h4>The animation makes this visualization very user-interactive. Scams have the highest mentions in the dating app confessions/ testimonials on Reddit, followed by catfishing.</h4>
-    </div>
   <div id="bubble_chart" align="center"></div>
 
 <style>
@@ -286,12 +253,12 @@
 }
 </style>
  <script src="bubblechart.js"></script>
- <div id="sidecontent">
-  <h2>User interactive bar chart</h2>
-  <h4>It shows the annual total number of Reddit posts which have the crime mentioned in them. A general trend of increasing nature is observed for moost of the crimes and their mentions.
-    (PS. Use the buttons to toggle between different crime categories).
-  </h4>
-  </div>
+ <br>
+<br>
+<div id="sidecontent">
+<h2>Circular Packed Bubble Chart with Collision and Dragging Animation (and tooltip)</h2>
+<h4>The animation makes this visualization very user-interactive. Scams have the highest mentions in the dating app confessions/ testimonials on Reddit, followed by catfishing.</h4>
+</div>
 <div id="bar_chart" align="center"> <button onclick="update('assault')">Assault</button>
   <button onclick="update('scam')">Scam</button>
   <button onclick="update('sexual assault')">sexual assault</button>
@@ -300,7 +267,12 @@
   <button onclick="update('robbed')">robbed</button></div>
 
 <script src="multi_bar_chart.js"></script>  
-
+<div id="sidecontent">
+<h2>User interactive bar chart</h2>
+<h4>It shows the annual total number of Reddit posts which have the crime mentioned in them. A general trend of increasing nature is observed for moost of the crimes and their mentions.
+  (PS. Use the buttons to toggle between different crime categories. )
+</h4>
+</div>
 <style>
   #sidecontent {
     margin:auto;
@@ -315,7 +287,3 @@
     font-weight: bold;
   }
 </style>
-
-<script type="module" src="config.js">
-</script>
-</body>
