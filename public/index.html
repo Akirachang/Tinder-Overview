@@ -201,7 +201,7 @@
         .range(d3.schemeSet2);
   
       // Add X axis --> it is a date format
-      var x = d3.scaleLinear()
+      var x = d3.scaleTime()
         .domain([2013,2022])
         .range([ 0, width ]);
       svg2.append("g")
