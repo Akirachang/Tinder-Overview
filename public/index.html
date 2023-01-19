@@ -201,12 +201,16 @@
         .range(d3.schemeSet2);
   
       // Add X axis --> it is a date format
-      var x = d3.scaleTime()
+      var x = d3.scaleLinear()
         .domain([2013,2022])
         .range([ 0, width ]);
+
+      const xAxis = d3.axisBottom(x)
+        .tickFormat(d3.format(""));
+
       svg2.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .call(xAxis);
   
       // Add Y axis
       var y = d3.scaleLinear()
